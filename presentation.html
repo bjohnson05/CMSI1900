@@ -1,0 +1,457 @@
+<!doctype html>
+<html lang='en'>
+   <head>
+      <meta charset='utf-8'>
+      <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+      <meta name='viewport' content='width=device-width, initial-scale=1'>
+      <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+      <meta name='description' content=''>
+      <meta name='author' content=''>
+      <title>CMSI 190 / SCEM 198</title>
+      <link href='../private/dist/css/bootstrap.min.css' rel='stylesheet'>            <!-- Bootstrap core CSS -->
+      <link href='../private/dist/css/starter-template.css' rel='stylesheet'>         <!-- Custom styles for this template -->
+      <link href='../private/dist/css/sticky-footer-navbar.css' rel='stylesheet'>     <!-- Custom styles for this template -->
+      <link href='../private/cmsipages.css' rel='stylesheet'>
+      <link rel ='shortcut icon'     href='Lion1.ico' />
+      <script type='text/javascript' src='../../public_html/private/scriptsCMSIpages.js'></script>   <!-- Custom code for the menu bar -->
+
+      <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+      <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+      <!--[if lt IE 9]>
+        <script src='https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js'></script>
+        <script src='https://oss.maxcdn.com/respond/1.4.2/respond.min.js'></script>
+      <![endif]-->
+   </head>
+
+   <body>
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<  This section is the header navigation menu bar.  It has the name of the place as a button which will
+<  return you to this page.  There two drop-downs which have links to other pages on the site, and a
+<  link button to the instructor's CV information that sort of serves as an "about" page.
+< ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+<!--      <script type='text/javascript'>myBootstrapMenubar186();</script>    -->
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<  This is the week 01 information page
+< ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+      <div class='container' style='padding-top: 3em; padding-right: 3em'>
+         <h1>CMSI 190 / SCEM 198:<br />Introduction to Networking for Fun and Profit</h1>
+
+         <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+         <     Class Notes for week one
+         < ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+         <h2>Tonight's Class Agenda</h2>
+         <ul><li>Introduction &mdash; The <strong>I</strong>nternet</li>
+             <li>Client/Server</li>
+             <li>Network Protocols</li>
+             <li>Packets</li>
+             <li>Internet and Network Addressing</li>
+             <li>Hardware</li>
+             <li>Commands</li>
+         </ul>
+
+         <h2 style='margin-top: 1.75em; margin-bottom: 0.5em'>Introduction &mdash; The <strong>I</strong>nternet</h2>
+         <table>
+            <tr>
+               <td><p>OK, we all know what the Internet is, right?  It's typically considered a <q>where</q> that
+                      is like some <em class='underline'>place</em> that we <q>visit</q> to get information.  But
+                      <span class='stress'>what is it REALLY</span>?</p>
+                   <p>As it turns out, the Internet [with the uppercase <q>I</q> meaning <strong>THE</strong>
+                      Internet] is a whole collection of machines and wires and hardware and software all working
+                      together in combination to deliver us the information we seek.</p>
+                   <p>If you think of the name as a combination of two words, <q>inter</q> [a prefix meaning
+                      <em>between</em>] and <q>network</q> [a bunch of things connected together] you can see what
+                      it's all about.</p>
+               </td>
+               <td style='padding-left: 3em'>
+                  <img src='../private/waldo.jpg' alt='Waldo squeaks' width='350' height='350'
+                       title='thanks to https://photos1.blogger.com/blogger/2454/1098/1600/waldo2.jpg' />
+               </td>
+            </tr>
+         </table>
+         <br />
+
+         <h2 style='margin-top: 1.75em; margin-bottom: 0.5em'>Client/Server</h2>
+         <p>If the Internet is just a big collection of stuff, we can sort of think of it like a restaurant.  When
+            I go in to get something to eat, I sit down at a table, the server comes over and asks what I'd like.
+            I tell them my preference, then they go off to the kitchen to place my order.  When the order is ready,
+            the server brings it back to me and I get to chow down on green eggs and ham or whatever.</p>
+         <p>The analogy with the way the Internet works, called the <strong>client/server model</strong>, is very
+            much the same thing.  The computer terminal would be the client [me, the hungry customer], with the
+            Internet hardware and software being the <q>server</q> [we'll see a slightly different version of this
+            in a minute], and the kitchen [the remote site] is where my data [food] is kept.</p><br />
+         <table>
+            <tr>
+               <td style='padding-right: 3em'>
+                  <img src='../private/inetclientserver.jpg' alt='Operation Steps' width='900' height='750'
+                       title='from a slide from my CMSI 182 and CMSI 185 classes' />
+               </td>
+               <td><p style='font-size: 300%'>Follow<br />the<br />steps<br />
+                                              to<br />get<br />your<br />web<br />page!</p>
+               </td>
+            </tr>
+         </table>
+         <br />
+         <p>Remember there's a <em class='underline'>whole bunch of stuff</em> that happens behind the scenes here
+            in this drawing, like address translation, routers sending things to other routers, packetizing of the
+            data, looking up where the specific data is located, and on and on and on.  Still, this diagram gives
+            you an idea of what happens when you want to visit <a href='www.lmu.edu'>www.lmu.edu</a>.</p>
+         <p>To illustrate the idea of client/server, let's try an experiment with the joke <q>Knock-Knock</q>.  As
+            you may remember, the joke goes:</p>
+         <p><em class='underline'>First person</em>: <q>Knock Knock</q></em></p>
+         <p><em class='underline'>Second person</em>: <q>Who's there?</q></em></p>
+         <p><em class='underline'>First person</em>: <q>Boo</q></em></p>
+         <p><em class='underline'>Second person</em>: <q>Boo who?</q></em></p>
+         <p><em class='underline'>First person</em>: <q>Why are you crying?</q></em></p>
+         <p>In this case, I have constructed [thanks to the
+            <a href='https://docs.oracle.com/javase/tutorial/networking/sockets/clientServer.html'>Oracle Java
+            Examples</a> website] a client/server application which does the joke and illustrates the idea.  The
+            server program, along with an associated <q>Protocol</q> class, handles the joke part, taking the
+            place of the first person above, and the client program, which takes the place of the second person in
+            the process and is run separately.  I will try to run the server on my computer and have one or more
+            of you run the client and connect to run the joke simulation.  [Hope it works!]</p>
+         <p>In this simulation, the server starts things off when it gets a connection from the client, by responding
+            to the connection from the client with the message "Knock knock" that will show up on the client's
+            display.  The client then must type "Who's there?" on the line and press enter, so the server will get
+            thatas its response.  The server then replies to the client with a random selection from a table of
+            possible joke lines, and the process continues like that until the joke completes.  Once the punch line
+            of the joke appears on the client's display, the server asks <q>Do you want another? (y/n)</q> to see
+            if the client wants another joke.</p>
+         <p>[The server program has two parts because one part ~ <code>KnockKnockServer.java</code> ~ handles the
+            connection and the other part ~ <code>KnockKnockProtocol.java</code> ~ handles the messages and the
+            <q>state</q> of the joke progress.}</p>
+
+         <h2 style='margin-top: 1.75em; margin-bottom: 0.5em'>Packets</h2>
+         <p>So, how does the computer know what computer to talk to on the other end of the connection?  It's all
+            done with the idea of <strong>addresses</strong>, specifically <strong>TCP/IP addresses</strong>.</p>
+         <p>When you order a package from Amazon, you must give them a delivery address, so that they know where
+            to ship your merchandise, and so that FedEx knows onto which truck to put it and what street and house
+            at which to drop it off.  Your house has a street address that is useful for that kind of situation.
+            In the same way, every device that is networked has a <strong>network address</strong> which uniquely
+            identifies that device on the network.  Going back to the diagram above, when the user enters a web
+            address like <q>https://myweb.lmu.edu</q> to visit a page on the Internet, the web browser breaks the
+            request message into small chunks called <strong>packets</strong> which are sent over the network to
+            the server.  On the server end, the packets are put back together to form the complete message again.
+            Inside each of those packets are TWO addresses: 1) the address of YOUR computer; and 2) the address of
+            the SERVER computer that the request is destined to reach.</p>
+         <p>Each packet resembles the following:</p>
+         <p style='text-align: center; margin-top: 2em; margin-bottom: 2em'>
+            <img src='../private/networkpacket.jpg' alt='Network Packet' width='900' height='300'
+                 title='Hand-made on my home whiteboard' /></p>
+         <p>As you can easily see, there is a BUNCH of stuff that is added to your data when you send it across a
+            network.  The black box marked <q>USER DATA</q> is the actual data that is being sent.  However, as it
+            moves through the system, there is another set of data added, called a <strong>header</strong>, which
+            creates the <strong>packet</strong> and contains information needed to properly transmit and receive
+            that information.  The first header that is added is put on by the <strong>Transport layer</strong> of
+            the system [we'll see that later] and makes the user data into a <strong>TCP Segment</strong>.</p>
+         <p>The second header that is added is done by the <strong>Internet layer</strong> and makes the packet
+            into an <strong>IP Datagram</strong> by adding the <q>IP Header</q>.  Finally, the last header added
+            is done by the <strong>Network Access layer</strong> adding the <q>network header</q> so that the whole
+            message is now called a <strong>Network-level Packet</strong>.  It is this packet that is sent along
+            the <strong>transmission medium</strong> to the other end of the connection.</p><br /><br />
+         <table>
+            <tr>
+               <td><p>Just for information so that you can see what is typically in a <em>header</em>, you can see
+                      on the right that there are a number of fields, made up of specific bytes of information to
+                      assist with the transmission.  A few fields in this diagram show you the point of packets.</p>
+                   <p>First, the <em class='underline'>version</em> and the <em class='underline'>header length</em>
+                      fields make sure that all the devices in the chain know what protocol version should be used,
+                      and how many bits to allow for in this packet.</p>
+                   <p>Next, look at the fields called <em class='underline'>source address</em> and
+                      <em class='underline'>destination address</em>.  Notice that these are 32-bit values.  We'll
+                      see more about addresses in a minute.</p>
+                   <p>Also note the <em class='underline'>identifier</em> and <em class='underline'>fragment offset</em>
+                      fields which help the other end reassemble the packets into the message that started out.
+                      Since it is not guaranteed that all packets will be sent through the exact same network path
+                      they may arrive at the destination out of order if one path takes longer than another.</p>
+                   <p>Finally, notice that packets are small, meaning you can send a LOT of different packets from
+                      MANY different sources to MANY different destinations, since their small size helps let the
+                      network mingle them together so that <q>everyone gets a little attention quickly</q>.  If a
+                      single long message was allowed to tie up the network, all the other users would have to wait
+                      for it to finish, which is not an efficient use of the resources.</p>
+               </td>
+               <td style='padding-left: 3em'>
+                  <img src='../private/IPdatagramlayout.jpg' alt='IP Datagram Layout' width='500' height='900'
+                       title='from a slide from my CMSI 182 and CMSI 185 classes' />
+               </td>
+            </tr>
+         </table>
+         <br />
+
+         <h2 style='margin-top: 1.75em; margin-bottom: 0.5em'>The OSI and TCP/IP Network <q>Stack</q> Models</h2>
+         <p>There are a number of layers of software and firmware that assist with network communications to make
+            sure that the messages get where they are going.  At the top there is the application that is working
+            on your local computer to send/receive the message; this might be your web browser application, for
+            example.  At the bottom is the actual <strong>transmission medium</strong> which carries the signals
+            that move the data from one machine to the other.  In between though there are a number of other layers
+            which have specific jobs in the process.  There are two views of these layers; each view actually is
+            just a model of the overall process with some of the functionality at specific layers either combined
+            or separated for clarity of the model.  One of these is called the <strong>OSI 7-layer model</strong>,
+            and the other is the <strong>TCP/IP 4-layer model</strong>.</p>
+         <p>Note that the TCP/IP model has the same functions as the OSI model, but they are grouped differently.
+            For this reason, we'll look at the OSI model first, then define the TCP/IP model in terms of it.</p>
+         <table>
+            <tr>
+               <td><p>The OSI model layers do the following:</p>
+                   <ol><li><strong>Application layer</strong>: provides access to the OSI environment for application
+                           users and also provides distribution of information.</li>
+                       <li><strong>Presentation layer</strong>: provides independence to the application processes
+                           from differences in data representation such as syntax or data field grouping</li>
+                       <li><strong>Session layer</strong>: Give the control structure for communications between the
+                           applications, and establishes, manages and terminates connections [sessions] between the
+                           cooperating applications</li>
+                       <li><strong>Transport layer</strong>: Provides reliable, transparent transfer of data batween
+                           end points and gives end-to-end error recovery and flow control</li>
+                       <li><strong>Network layer</strong>: Provides the upper layers with independence from the data
+                           transmisison and switching tech used to connect systems.  It is responsible for creating,
+                           maintaining, and terminating connections</li>
+                       <li><strong>Data Link layer</strong>: provides for the reliable transfer of information across
+                           the physical link [below] and sends blocks [frames] of data with the needed synchronization,
+                           error control and flow control</li>
+                       <li><strong>Physical layer</strong>: transmission of unstructure bit streams over the physical
+                           medium; this layer deals with the mechanical, electrical, functional, and procedural
+                           characteristics to access the physical medium [wired or wireless transmission]</li>
+                   </ol>
+               </td>
+               <td style='padding-left: 3em'>
+                  <img src='OSImodel-2.png' alt='7-layer OSI network stack' width='500' height='500'
+                       title='thanks to https://mycodecamp.blogspot.com/2019/10/7-layer-of-osi-model.html' />
+               </td>
+            </tr>
+         </table>
+         <br /><br />
+         <table>
+            <tr>
+               <td style='padding-right: 3em'>
+                  <img src='TCP-IPmodel.png' alt='4-layer TCP/IP network stack' width='500' height='500'
+                       title='thanks to http://mhshohag.com/compare-and-contrast-osi-and-tcp-ip-models/' />
+               </td>
+               <td><p>By comparison, notice that in the diagram below, the right side has the TCP/IP model and how
+                      its layers equate to the OSI model.  Two of the layers, the Transport layer and the Network
+                      layer, are the same.  However, the other layers in the TCP/IP model are basically
+                      <em class='underline'>aggregates</em> of the corresponding layers in the OSI model as you can
+                      see by the colors.  The functions that are performed in those aggregated layers are
+                      [essentially] identical, but the MODEL is different.</p>
+               </td>
+            </tr>
+         </table>
+         <br />
+
+         <h2 style='margin-top: 1.75em; margin-bottom: 0.5em'>Internet and Network Addressing</h2>
+         <p>OK, so remember I said we'd see more about addresses?  NOW IS THE TIME!</p>
+         <p>Network addresses are made up of four numbers, each of which has 8 bits.  That makes up the 32-bits of
+            the source and destination address fields in the header.  You are probably familiar with them, even if
+            you didn't know that's what they are.  They look like <strong>192.168.123.234</strong>.  Each number
+            in the series is made up of one 8-bit value, which is why each number is sometimes referred to as an
+            <strong>octet</strong>.  The numbers translate to networks and sub-networks and sub-sub-networks, so
+            that the hardware [and software] which is in between the two <strong>end points</strong> can tell what
+            the <strong>route</strong> should be to get the packet to its destination.</p>
+         <p>From the machinery standpoint, it is easy for them to pick the values apart, look up in a table to see
+            what the next step in the route would be, and send the packet along to that next address in the chain.
+            However, it is much harder for humans to be able to remember specific number sequences like that.  For
+            example, what if every time you wanted to view the LMU home page, you had to type the number sequence
+            <strong>52.38.76.44</strong>?  Or to get to Google for an Internet search, which would be a different
+            set of numbers [172.217.10.142]?</p>
+         <p>Fortunately, there are two organizations that help out here.  First of all there is the the Internet
+            Corporation for Assigned Names and Numbers [<a href='www.icann.org'>ICANN</a>] which is a non-profit
+            organization that assigns the names to the network addresse octets.  You pay a fee to own the name.
+            Names are <em class='underline'>registered</em> and are called <strong>domains</strong> or <strong>domain
+            names</strong>.  For example, the address 52.36.76.44 is registered with the ICANN for the domain
+            <q>lmu.edu</q>.</p>
+         <p>The second organization is related to the <em class='underline'>name translation</em> that happens so
+            that humans can remember the names rather than the number sequences.  The <strong>Domain Name System
+            [DNS]</strong> performs the translation based on the approved names from the ICANN.  It is essentially
+            a series of computer servers with big look-up tables that match the names that have been assigned to
+            the numeric addresses to which they translate.  This look-up occurs <q>behind the scenes</q> within the
+            web browser application, so you never have to be aware it's happening [unless something goes wrong].</p>
+         <p>Remember: EVERY device that is connected to the Internet needs an IP Address.  Otherwise this system
+            won't work!  If YOUR computer didn't have an address, you could send a message to a remote computer
+            [like www.lmu.edu] to get their web page, but the LMU server wouldn't know where to send the page back
+            to you.  On the other hand, if the LMU server didn't have an address, NO ONE would know how to connect
+            to it to get information!</p>
+         <p>[BTW, you can look up the numbers for any domain name if you want, by visiting
+            <a href='https://dnslookup.org/'>DNS Lookup</a> site which is maintained by the DNSLookup Organization
+            for just such a purpose.</p>
+
+         <h2 style='margin-top: 1.75em; margin-bottom: 0.5em'>Network Protocols</h2>
+         <p>Network addresses in the browser are known as <strong>Uniform Resource Locators [URLs]</strong> and
+            they have specific parts that mean things for how the file you are interested in can be found.  The
+            URL starts out with a <strong>protocol indicator</strong> which tells what type of communication will
+            be used.  This is what comes before the <q>://</q> in the URL line.  Next comes the <strong>web
+            address</strong> which includes the domain of the server that is providing the information, i.e.,
+            <q>www.lmu.edu</q> or <q>www.mozilla.org</q>.  After that comes a slash character, which is used as a
+            separator, and then the directory path on the server which contains the file.</p>
+         <p>For example, lets consider if we wanted to get a page called <q>woof.html</q> which is located in the
+            file path <q>directory1/directory2/subdirectory/longpath</q> on the server in the domain <q>blah.gov</q>.
+            To find this file we would need to get the URL line to say:</p>
+         <blockquote>
+            https://www.blah.gov/directory1/directory2/subdirectory/longpath/woof.html
+         </blockquote>
+         <p>There ARE some nice shortcuts to this, for example, if the main page on a site is named <q>index.html</q>,
+            you don't have to type that, it will come up by default.  Likewise, modern browsers know to put the WWW
+            on the front if you leave it off, so you only need to type in <q>google.com</q> to get the search page.</p>
+         <p>The first part of this, the <q>protocol</q> part, tells the communications channel how to communicate
+            over the network.  The word <em class='underline'>protocol</em> really just means an agreement, sort of
+            like a contract between the two ends that says <q>here's how we'll do this transfer thing</q>.  There are
+            many different types of protocols.  Some of the familiar ones are http, https, ftp, telnet, ssh, tftp,
+            smtp, and of course TCP and IP which are usually seen together as TCP/IP.</p>
+
+         <h2 style='margin-top: 1.75em; margin-bottom: 0.5em'>Hardware</h2>
+         <p>There is a significant amount of hardware that is required to support network operations.  We usually
+            don't notice it, because it is <q>infrastructure</q> and is not in front of our faces the way our
+            computers and screens are, but without it, we would not be able to watch Tik-Tok videos or stream our
+            favorite NetFlix shows.</p>
+         <p>As an analogy, think about roads and bridges and tunnels that facilitate our physical transportation.
+            We rarely think about them, we just use them.  But without them, we'd get nowhere.</p>
+         <table>
+            <tr>
+               <td><p>With networking, as with so many things in computer science, there are levels of
+                      infrastructure that form a hierarchy.  The first thing in this chain is your computer itself.
+                      Every computer [or other connected device] has hardware that helps the machine connect to the
+                      network.  It can be wireless, so that the connection isn't a physical <q>thing</q> that you
+                      can hold in your hand, or wired which uses a cable that plugs into your computer [assuming
+                      you have the required place to plug it in!].</p>
+                   <p>The lowest level device on a network is called a <strong>hub</strong>.  This is a device
+                      that takes a cable which <q>feeds</q> the data into it, and several ports that distrubute
+                      the data to all the other devices which are connected to it.  The distinction about a hub is
+                      that it is not <q>smart</q>; any message that comes in is sent to all other devices
+                      connected to the hub, and it is up to these devices to disregard messages that are not sent
+                      specifically to them.</p>
+               </td>
+               <td style='padding-left: 3em'>
+                  <img src='hubswitches.png' alt='hubs and switches and repeaters, oh my!' width='450' height='200'
+                       title='thanks to https://www.tutorialspoint.com/Basic-Network-Hardware' />
+               </td>
+            </tr>
+         </table>
+         <br />
+         <table>
+            <tr>
+               <td style='padding-right: 3em'>
+                  <img src='routerpic.png' alt='router, router, router' width='450' height='200'
+                       title='thanks to https://www.tutorialspoint.com/Basic-Network-Hardware' />
+               </td>
+               <td><p>The next-higher-level device is called a <strong>switch</strong>.  A switch is like a hub,
+                      but instead of sending all the message packets to all connected devices, the switch has
+                      internal software [called <strong>firmware</strong>] that can examine each packet as it
+                      arrives and only forward it on to the specific device to which is is destined.  An
+                      <strong>unmanaged switch</strong> has no configuration options, it is the simplest version.
+                      A <strong>managed switch</strong> has the ability to be configured to modify its operation
+                      to do things like set bandwidth, reject certain port destinations, activate or deactivate
+                      ports on the device, or set up <strong>Virtual Local Area Networks [VLANs]</strong>.  The
+                      switch uses the concept of <strong>packet switching</strong> to receive and forward data.</p>
+                   <p>Moving up the hierarchy, we next meet the <strong>router</strong>.  A router is like a
+                      switch on steriods.  Routers have the ability to determine not only which computer a message
+                      should be sent to, but also has the ability to determine the next link [also called a
+                      <strong>hop</strong>] to get to that link.  This is done by the use of a <strong>look-up
+                      table</strong> in the memory of the router.  You will be familiar with routers from your
+                      home network, in which the router is the distribution point for messages coming in from your
+                      <strong>Internet Service Provider [ISP]</strong> to get them to the devices on your home
+                      network.  [BTW, your home network can be thought of as a <strong>Local Area Network
+                      [LAN]</strong>.]</p>
+               </td>
+            </tr>
+         </table>
+         <br />
+         <table>
+            <tr>
+               <td><p>A <strong>bridge</strong> is like a <q>super-router</q> that is used to connect to separate
+                      Ethernet network segments; it <q>bridges</q> the connection between two different networks.
+                      The networks that are being connected this way need to use the same protocols.</p>
+                   <p>Finally, we have the <strong>gateway</strong>, which is like a bridge, but this time the
+                      networks that are being connected do NOT need to use the same protocols.  It is the entry
+                      and exit point to a network and controls access from that network to any other network.</p>
+               </td>
+               <td style='padding-left: 3em'>
+                  <img src='gateway.png' alt='it is not golden, but....' width='450' height='200'
+                       title='thanks to https://www.tutorialspoint.com/Basic-Network-Hardware' />
+               </td>
+            </tr>
+         </table>
+
+         <h2 style='margin-top: 1.75em; margin-bottom: 0.5em'>Network Commands</h2>
+         <p>One of the most useful commands in the network arsenal is the lowly <strong>ping</strong> command.  If
+            you type that word onto the command line, you can see if there is a connection path from your host to
+            a remote host.  Fortunately, ping [in most cases] can figure out the DNS stuff so you can use domain
+            names rather than numbers, but numbers work, too!  There are a ton of command line switches that you
+            can use to find out lots more information.  Try using <q>man ping</q> on mac or <q>ping /?</q> on
+            windows to get the full details.  Note that the command works a little differently on the two platforms
+            &ndash; on windows, ping will send four messages to the remote host and then stop, while on a mac it
+            will keep sending until you use <q>control+C</q> to make it quit.</p>
+         <p>[ping demonstration goes here]</p>
+         <p>Another useful command will help you get configuration and some status information about your network
+            adapter on your host.  On windows, you can use <strong>ipconfig /all</strong> to see a ton of stuff
+            including your mac address, your main IP address, IPv4 information, IPv6 information, any virtual
+            network adapters information, wireless configurations, DNS lookup hosts, and more.  On mac, you use
+            the command <strong>ifconfig -a</strong> to get that kind of information.</p>
+         <p>[ipconfig demonstration goes here]</p>
+         <p>A third handy-dandy tool is <strong>netstat</strong>, short for <q>network status</q>.  In this case,
+            the same command will work for either platform, but they operate quite differently.  On mac, you have
+            a large number of command line switches that limit or expand the information you'll get displayed.
+            Take a look at <a href='https://linux.die.net/man/8/netstat'>the netstat man page</a> to see what I
+            mean.  On windows, the default simply gives you a list of four columns that include the protocol, the
+            local address, the foreigh address, and the state for each connection.  The windows version can be
+            slow, too, if some of the connections have been put into the "CLOSE_WAIT" state &ndash; for those, the
+            connection has to time out before it returns and the entire program must wait for each response.  Still
+            it is a handy command to have to see addresses and port numbers that are active on the network.  You
+            also get information about other devices that are connected, like printers, chromecast devices, and so
+            on.  Nice to use if you suspect there are unauthorized devices that are connected to your wireless
+            network without permission!</p>
+         <p>[netstat demonstration goes here]</p>
+         <p>As stated before, to communicate with each and other computers need a unique address.  A computer name,
+            called a <strong>hostname</strong> is assigned to help lend a human-understandable name to each one.
+            Hostnames can be alphabetic or alphanumeric, and can contain specific symbols used to define an
+            individual node or device in the network.  Fortunately, the command is the same as the information it
+            returns: <strong>hostname</strong>.  Also fortunately, the command is the same on both platforms.</p>
+         <p>[netstat demonstration goes here]</p>
+         <p>Check out the <strong>tracert</strong> command, too!  This one [short for <q>trace route</q>] will show
+            you the number of hops [meaning the number of independent devices] the message goes through to reach
+            the other end of the connection.  There are a few options to this one, but not too many&hellip;</p>
+         <p>[tracert demonstration goes here]</p>
+         <p>The <strong>nslookup</strong> command [which stands for <q>name server lookup</q>] is a utility used
+            to obtain information about internet servers.  It provides name server information for the Domain Name
+            System [DNS] i.e. the name and IP Address of the default DNS server.</p>
+         <p>[nslookup demonstration goes here]</p>
+         <p>Another useful command is the <strong>route print</strong> command, which you can use to display your
+            computer's internal routing table.  Be careful with this one, though, because there are options to
+            <em class='underline'>modify</em> the table as well, and you don't want to accidentally change some
+            configuration and mess things up!</p>
+         <p>[route print demonstration goes here]</p>
+         <p>Finally, there is the <strong>ARP</strong> command.  ARP stands for <strong>Address Resolution
+            Protocol</strong>.  Although network communications can readily be thought of as an IP address, the
+            delivery of a packet depends ultimately on the <strong>Media Access Control [MAC]</strong>.  This is
+            where the protocol for address resolution comes into effect.  You can add the remote host IP address
+            using the <em class='underline'>arp -a</em> command in case you have issues communicating with a given
+            host.  The ARP command provides information like Address, Flags, Mask, Interface, Hardware Type,
+            Hardware Address, and more.</p>
+         <p>[arp demonstration goes here]</p>
+
+      </div>   <!-- end of "main" div for the page. -->
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<  This section is the footer content which has the copyright information and update time stamp.
+< ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+      <footer class='footer' style='height: 8.5em; padding-top: 5em;'>
+         <div class='container'>
+            <p class='text-muted' style='text-align: left; font-size: 50%;'>
+               Copyright (c) 2005-2020, B.J. Johnson and LMU<br />
+               Last updated Tuesday, 2020-08-04, 11:51:23<br />
+               Images on this web may be borrowed from other sources for teaching purposes only.<br />
+               If I am using an image that you want me to remove, tell me and I'll take it down.<br />
+               Use of feminine pronouns should be inferred to apply to both genders.<br /><br /><br />
+            </p>
+         </div>
+      </footer>
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<  This section is the script files; they are at the end so the page will load faster.
+< ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+      <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+      <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js'></script>
+      <!-- Include all compiled plugins (below), or include individual files as needed -->
+      <script src='../private/dist/js/bootstrap.min.js'></script>
+      <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+      <script src='../../assets/js/ie10-viewport-bug-workaround.js'></script>
+   </body>
+</html>
