@@ -36,7 +36,7 @@
 <  This is the week 01 information page
 < ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
       <div class='container' style='padding-top: 3em; padding-right: 3em'>
-         <h1>CMSI 190 / SCEM 198:<br />Introduction to Networking for Fun and Profit</h1>
+         <h1>CMSI 1900:<br />Introduction to Networking for Fun and Profit</h1>
 
          <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
          <     Class Notes for week one
@@ -93,7 +93,7 @@
             </tr>
          </table>
          <br />
-         <p>Remember there's a <em class='underline'>whole bunch of stuff</em> that happens behind the scenes here
+         <p>Remember there's a <em class='underline'>whole bunch of actions</em> that happen behind the scenes here
             in this drawing, like address translation, routers sending things to other routers, packetizing of the
             data, looking up where the specific data is located, and on and on and on.  Still, this diagram gives
             you an idea of what happens when you want to visit <a href='www.lmu.edu'>www.lmu.edu</a>.</p>
@@ -109,8 +109,10 @@
             Examples</a> website] a client/server application which does the joke and illustrates the idea.  The
             server program, along with an associated <q>Protocol</q> class, handles the joke part, taking the
             place of the first person above, and the client program, which takes the place of the second person in
-            the process and is run separately.  I will try to run the server on my computer and have one or more
-            of you run the client and connect to run the joke simulation.  [Hope it works!]</p>
+            the process and is run separately.  The Java code is available on my GitHub repo at:
+            <a href='https://github.com/bjohnson05/CMSI1900'>this link</a> &mdash; feel free to download copies of
+            the code if you have Java installed on your computer.  I will try to run the server on my computer and
+            have one or more of you run the client and connect to run the joke simulation.  [Hope it works!]</p>
          <p>In this simulation, the server starts things off when it gets a connection from the client, by responding
             to the connection from the client with the message "Knock knock" that will show up on the client's
             display.  The client then must type "Who's there?" on the line and press enter, so the server will get
@@ -122,8 +124,50 @@
             connection and the other part ~ <code>KnockKnockProtocol.java</code> ~ handles the messages and the
             <q>state</q> of the joke progress.}</p>
 
+         <h2 style='margin-top: 1.75em; margin-bottom: 0.5em'>Internet and Network Addressing</h2>
+         <p>How do the computers know were to 'go' to get the information?  Think of it like the Amazon driver who
+            is delivering a package.  She needs to know an <strong>address</strong> where she can drop your package
+            off on the front porch, right?  That address is how she knows she has the right house.  Network addresses
+            serve the same function, but in both directions &mdash; giving the client an address of the server which
+            holds the information, and giving the server the address of the client to which the information should be
+            returned.</p>
+         <p>Network addresses are made up of four numbers, each of which has 8 bits.  That makes up the 32-bits of
+            the source and destination address fields in the header.  You are probably familiar with them, even if
+            you didn't know that's what they are.  They look like <strong>192.168.123.234</strong>.  Each number
+            in the series is made up of one 8-bit value, which is why each number is sometimes referred to as an
+            <strong>octet</strong> [<q>oct</q> means <q>eight</q>].  The numbers translate to networks and to
+            sub-networks and sub-sub-networks, so that the hardware [and software] which is in between the two
+            <strong>end points</strong> can tell what the <strong>route</strong> should be to get the information
+            packet to its destination.  We'll learn about 'packets' next.</p>
+         <p>From the machinery standpoint, it is easy for them to pick the values apart, look up in a table to see
+            what the next step in the route would be, and send the packet along to that next address in the chain.
+            This is what <strong>network routers</strong> do.  However, it is much harder for humans to be able to
+            remember specific number sequences of numbers like thise.  For example, what if every time you wanted to
+            view the LMU home page, you had to type the number sequence <strong>52.38.76.44</strong>?  Or to get to
+            Google for an Internet search, which would be a different set of numbers [172.217.10.142]?</p>
+         <p>Fortunately, there are two organizations that help out here.  First of all there is the the Internet
+            Corporation for Assigned Names and Numbers [<a href='www.icann.org'>ICANN</a>] which is a non-profit
+            organization that assigns the names to the network address octets.  You pay a fee to own the name.
+            Names are <em class='underline'>registered</em> and are called <strong>domains</strong> or <strong>domain
+            names</strong>.  For example, the address 52.36.76.44 is registered with the ICANN for the domain
+            <q>lmu.edu</q>.</p>
+         <p>The second organization is related to the <em class='underline'>name translation</em> that happens so
+            that humans can remember the names rather than the number sequences.  The <strong>Domain Name System
+            [DNS]</strong> performs the translation based on the approved names from the ICANN.  It is essentially
+            a series of computer servers with big look-up tables that match the names that have been assigned to
+            the numeric addresses to which they translate.  This look-up occurs <q>behind the scenes</q> within the
+            web browser application, so you never have to be aware it's happening [unless something goes wrong].</p>
+         <p>Remember: EVERY device that is connected to the Internet needs an IP Address.  Otherwise this system
+            won't work!  If YOUR computer didn't have an address, you could send a message to a remote computer
+            [like www.lmu.edu] to get their web page, but the LMU server wouldn't know where to send the page back
+            to you.  On the other hand, if the LMU server didn't have an address, NO ONE would know how to connect
+            to it to get information!</p>
+         <p>[BTW, you can look up the numbers for any domain name if you want, by visiting the
+            <a href='https://dnslookup.org/'>DNS Lookup</a> site which is maintained by the DNSLookup Organization
+            for just such a purpose.</p>
+
          <h2 style='margin-top: 1.75em; margin-bottom: 0.5em'>Packets</h2>
-         <p>So, how does the computer know what computer to talk to on the other end of the connection?  It's all
+         <p>So, how does any computer know which computer to talk to on the other end of the connection?  It's all
             done with the idea of <strong>addresses</strong>, specifically <strong>TCP/IP addresses</strong>.</p>
          <p>When you order a package from Amazon, you must give them a delivery address, so that they know where
             to ship your merchandise, and so that FedEx knows onto which truck to put it and what street and house
@@ -237,42 +281,6 @@
             </tr>
          </table>
          <br />
-
-         <h2 style='margin-top: 1.75em; margin-bottom: 0.5em'>Internet and Network Addressing</h2>
-         <p>OK, so remember I said we'd see more about addresses?  NOW IS THE TIME!</p>
-         <p>Network addresses are made up of four numbers, each of which has 8 bits.  That makes up the 32-bits of
-            the source and destination address fields in the header.  You are probably familiar with them, even if
-            you didn't know that's what they are.  They look like <strong>192.168.123.234</strong>.  Each number
-            in the series is made up of one 8-bit value, which is why each number is sometimes referred to as an
-            <strong>octet</strong>.  The numbers translate to networks and sub-networks and sub-sub-networks, so
-            that the hardware [and software] which is in between the two <strong>end points</strong> can tell what
-            the <strong>route</strong> should be to get the packet to its destination.</p>
-         <p>From the machinery standpoint, it is easy for them to pick the values apart, look up in a table to see
-            what the next step in the route would be, and send the packet along to that next address in the chain.
-            However, it is much harder for humans to be able to remember specific number sequences like that.  For
-            example, what if every time you wanted to view the LMU home page, you had to type the number sequence
-            <strong>52.38.76.44</strong>?  Or to get to Google for an Internet search, which would be a different
-            set of numbers [172.217.10.142]?</p>
-         <p>Fortunately, there are two organizations that help out here.  First of all there is the the Internet
-            Corporation for Assigned Names and Numbers [<a href='www.icann.org'>ICANN</a>] which is a non-profit
-            organization that assigns the names to the network addresse octets.  You pay a fee to own the name.
-            Names are <em class='underline'>registered</em> and are called <strong>domains</strong> or <strong>domain
-            names</strong>.  For example, the address 52.36.76.44 is registered with the ICANN for the domain
-            <q>lmu.edu</q>.</p>
-         <p>The second organization is related to the <em class='underline'>name translation</em> that happens so
-            that humans can remember the names rather than the number sequences.  The <strong>Domain Name System
-            [DNS]</strong> performs the translation based on the approved names from the ICANN.  It is essentially
-            a series of computer servers with big look-up tables that match the names that have been assigned to
-            the numeric addresses to which they translate.  This look-up occurs <q>behind the scenes</q> within the
-            web browser application, so you never have to be aware it's happening [unless something goes wrong].</p>
-         <p>Remember: EVERY device that is connected to the Internet needs an IP Address.  Otherwise this system
-            won't work!  If YOUR computer didn't have an address, you could send a message to a remote computer
-            [like www.lmu.edu] to get their web page, but the LMU server wouldn't know where to send the page back
-            to you.  On the other hand, if the LMU server didn't have an address, NO ONE would know how to connect
-            to it to get information!</p>
-         <p>[BTW, you can look up the numbers for any domain name if you want, by visiting
-            <a href='https://dnslookup.org/'>DNS Lookup</a> site which is maintained by the DNSLookup Organization
-            for just such a purpose.</p>
 
          <h2 style='margin-top: 1.75em; margin-bottom: 0.5em'>Network Protocols</h2>
          <p>Network addresses in the browser are known as <strong>Uniform Resource Locators [URLs]</strong> and
